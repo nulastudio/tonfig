@@ -1,6 +1,6 @@
 {
-  "name": "tonfig",
-  "version": "1.0.0",
+  "name": "@liesauer/tonfig",
+  "version": "1.0.1",
   "description": "a toml config manager for node application.",
   "author": "LiesAuer",
   "license": "MIT",
