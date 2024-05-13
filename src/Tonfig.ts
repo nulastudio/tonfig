@@ -1,5 +1,6 @@
 import TOML from '@iarna/toml';
 import mergeWith from 'lodash.mergewith';
+import { existsSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
 import objectPath from "object-path";
@@ -18,7 +19,13 @@ export class Tonfig {
     private __construct() {}
 
     public static async loadFile(file: string, _defualt?: any) {
-        return readFile(file, { encoding: 'utf-8' }).then(async content => {
+        let content: string | Promise<string> = '';
+
+        if (existsSync(file)) {
+            content = readFile(file, { encoding: 'utf-8' });
+        }
+
+        return Promise.resolve(content).then(async content => {
             return this.loadConfig(content).then(config => {
                 config.file = file;
 
