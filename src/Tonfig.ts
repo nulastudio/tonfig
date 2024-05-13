@@ -26,7 +26,7 @@ export class Tonfig {
         }
 
         return Promise.resolve(content).then(async content => {
-            return this.loadConfig(content).then(config => {
+            return this.loadConfig(content, _defualt).then(config => {
                 config.file = file;
 
                 return config;
